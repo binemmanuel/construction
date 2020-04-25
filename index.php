@@ -1,12 +1,15 @@
 <?php
 require 'lib/config.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Under Construction | Bin Emmanuel</title>
+    <title>
+        Under Construction | Bin Emmanuel | I build Responsive, user friendly Web Application, Websites and Android Application
+    </title>
 
     <link rel="shortcut icon" type="image/png" href="assets\img\logo.PNG">
 
