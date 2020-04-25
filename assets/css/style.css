@@ -1,0 +1,130 @@
+body{
+    background: url('../img/excavators-51665_1280.jpg') no-repeat;
+    background-size: cover;
+    bottom: 0;
+    color: rgb(255, 255, 2555);
+    font-size: 25px !important;
+}
+header{
+    display: inline-flex;
+    width: 100%;
+    font-family: 'Lobster', cursive;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    text-shadow: 2px 2px 6px rgb(0, 0, 0);
+    font-family: 'Comfortaa', cursive;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    text-align: center;
+    margin: 180px 0 0 0;
+    font-family: 'Lobster', cursive;
+}
+.logo{
+    width: 70%;
+}
+.mail{
+    width: 30%;
+    text-align: right;
+}
+.logo,
+.mail{
+    padding: 10px;
+}
+.fa{
+     color: rgb(255, 255, 2555);
+}
+.banner{
+    background: rgba(0, 0, 0, 0.513);
+    width: 50%;
+    padding: 20px;
+    margin: 20px auto;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    border-left: 4px solid;
+    border-right: 4px solid;
+    text-shadow: 2px 2px 10px rgb(0, 0, 0);
+    font-family: 'Comfortaa', cursive;
+}
+.banner p{
+    margin: 0 0 25px 0;
+}
+.subscription-form{
+    display: inline-flex;
+    width: 50%;
+    margin: 0 auto;
+}
+.subscription-form input[type=email]{
+    background: rgba(255, 255, 255, 0.801);
+    border: 3px solid transparent;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    outline: none;
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+}
+.subscription-form input[type=email]:focus,
+.subscription-form input[type=email]:hover{
+    border: 3px solid rgb(30, 126, 52);
+}
+.subscription-form button[type=submit]{
+    background: rgb(30, 126, 52);
+    border: none;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    outline: none;
+    padding: 7px 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.social-menu{
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+    cursor: pointer;
+}
+.social-menu .nav-item{
+    padding: 20px 30px;
+    transition: transform .6s;
+}
+.social-menu .nav-item:hover{
+    transform: scaleY(1.2);
+}
+.social-menu .facebook{
+    background: rgba(56, 88, 152, 0.877);
+}
+.social-menu .github{
+    background: rgba(0, 0, 0, 0.877);
+}
+.social-menu .instagram{
+    background: rgba(255, 0, 0, 0.877);
+}
+
+@media screen and (max-width: 1353px){
+    body{
+        height: 100vh;
+    }
+}
+@media screen and (max-width: 1076px){
+    .banner{
+        font-size: 1rem;
+        width: 80%;
+    }
+    .subscription-form{
+        width: 100%;
+    }
+    .social-menu .nav-item{
+        padding: 0.5rem 1rem;
+    }
+}
