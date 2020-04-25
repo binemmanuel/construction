@@ -7,9 +7,11 @@ require 'lib/config.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        Under Construction | Bin Emmanuel | I build Responsive, user friendly Web Application, Websites and Android Application
-    </title>
+    <title>Under Construction | Bin Emmanuel</title>
+
+    <meta name="description" content="Bin Emmanuel is a software developer who is specialized in Web, Desktop and Android Development. Builds Desktop, Mobile and Web Applications" />
+
+    <meta name=”robots” content="index, follow" />
 
     <link rel="shortcut icon" type="image/png" href="assets\img\logo.PNG">
 
@@ -49,19 +51,23 @@ require 'lib/config.php';
         </div>
     </main>
     <footer>
-        <span>Reach me:&nbsp;</span>
+        <div class="foot">
+            <span>Reach me:&nbsp;</span>
 
-        <ul class="social-menu">
-            <li class="nav-item facebook">
-                <a class="nav-link" target="_blank" href="https://facebook.com/bin.emmanuel"><i class="fa fa-facebook"></i></a>
-            </li>
-            <li class="nav-item github">
-                <a class="nav-link" target="_blank" href="https://github.com/binemmanuel"><i class="fa fa-github"></i></a>
-            </li>
-            <li class="nav-item instagram">
-                <a class="nav-link" target="_blank" href="https://www.instagram.com/7binemmanuel/"><i class="fa fa-instagram"></i></a>
-            </li>
-        </ul>
+            <ul class="social-menu">
+                <li class="nav-item facebook">
+                    <a class="nav-link" target="_blank" href="https://facebook.com/bin.emmanuel"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li class="nav-item github">
+                    <a class="nav-link" target="_blank" href="https://github.com/binemmanuel"><i class="fa fa-github"></i></a>
+                </li>
+                <li class="nav-item instagram">
+                    <a class="nav-link" target="_blank" href="https://www.instagram.com/7binemmanuel/"><i class="fa fa-instagram"></i></a>
+                </li>
+            </ul>
+        </div>
+        
+        <script src="assets/js/main.js"></script>
     </footer>
 </body>
 </html>
