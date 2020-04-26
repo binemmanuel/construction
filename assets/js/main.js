@@ -1,7 +1,6 @@
-const foot = document.querySelector('.foot')
+const alert = document.querySelector('.alert')
 
-if (document.body.scrollHeight >= 444) {
-    foot.style.display = 'none';
-} else {
-    foot.style.display = 'block';
-}
+setTimeout(() => {
+    alert.style.opacity = 0;
+    alert.style.visibility = 'hidden';
+}, 1000);

@@ -18,7 +18,12 @@ require 'functions.php';
 /**
  * Class Directory.
  */
-define('CLASS_DIR', 'lib/classes/');
+define('LIB_DIR', 'lib'. DIRECTORY_SEPARATOR);
+
+/**
+ * Classes file path.
+ */
+define('CLASS_DIR', LIB_DIR .'classes'. DIRECTORY_SEPARATOR);
 
 /**
  * Upload Directory.
@@ -37,6 +42,9 @@ define('DB_PASSWORD', 'SMARTlogin89');
 
 /** MySQL hostname */
 define('DB_SERVER', 'localhost');
+
+/** Set character set */
+define('CHARSET', 'utf8mb4');
 
 /** Mail configurations */
 define('SMTP_HOST', 'smtp_host_here');

@@ -19,7 +19,7 @@ try {
 	$conn = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 
 	// Set character ser to UTF-8.
-	$conn->set_charset($charset);
+	$conn->set_charset(CHARSET);
 
 } catch (\mysqli_sql_exception  $e) {
 	// Check if there was an error when trying to establish the connection.

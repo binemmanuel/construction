@@ -1,6 +1,45 @@
 <?php
 require 'lib/config.php';
+require 'lib/classes/User.php';
 
+// Instantiate a User Object.
+$user = new User;
+
+/**
+ * Process for data.
+ */
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Store the email address.
+    $email = clean_data($_POST['email']);
+
+    if (!empty($_POST['email'])) {
+        // Check if the user already subscribed
+        if ($user::user_exist($email)) {
+            // Store an error message
+            $message = 'You are already a subscriber. Thank you';
+        } else {
+            // Set the user's role.
+            $user->set_role('subscriber');
+        
+            // Set the user's email address.
+            $user->set_email($email);
+        
+            // Subcribe.
+            if ($user->subcribe()) {
+                // Store a message.
+                $message = 'An email as been sent to you.';
+                $message .= '<br/> Please confirm you email address.';
+        
+                unset($email);
+            }
+        }
+        
+    } else {
+        // store an error message
+        $error = 'Please enter your email address';
+    }
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,15 +65,34 @@ require 'lib/config.php';
 </head>
 <body>
     <header>
+        <!-- logo -->
         <div class="logo">
-            Bin Emmanuel
+            <a href="">Bin Emmanuel</a>
         </div>
+        <!-- logo /-->
+
+        <!-- .mail -->
         <div class="mail">
             <a href="mailto:textme@binemmanuel.com"><i class="fa fa-envelope"></i></a>
         </div>
+        <!-- .mail /-->
     </header>
     <main>
+        <?php if (!empty($error)): ?>
+            <!-- .success-alert -->
+            <p class="alert error-alert width-7"><?= $error ?></p>
+            <!-- .success-alert /-->
+
+        <?php elseif (!empty($message)): ?>
+            <!-- .success-alert -->
+            <p class="alert success-alert width-7"><?= $message ?></p>
+            <!-- .success-alert /-->
+            
+        <?php endif ?>
+
         <h1>Coming Soon</h1>
+
+        <!-- .banner -->
         <div class="banner">
             <p>
                 My website is under construction and would be down for a couple of days.
@@ -42,18 +100,31 @@ require 'lib/config.php';
             </p>
             <p>Subscribe to the news letter to stay in touch</p>
 
-            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" class="subscription-form" autocomplete="off">
-                <input type="email" name="email" placeholder="Subscribe" />
-                <button type="submit">
-                    <i class="fa fa-envelope"></i>
-                </button>             
+            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+                <!-- .subscription-form -->
+                <div class="subscription-form">
+                    <input type="email" name="email" placeholder="Subscribe" />
+
+                    <button type="submit">
+                        <i class="fa fa-envelope"></i>
+                    </button>
+                </div>
+                <!-- .subscription-form /-->
+
+                <div>
+                    <small>We'll never share your email with anyone else.</small>
+                </div>
             </form>
         </div>
+        <!-- .banner /-->
+
     </main>
     <footer>
+        <!-- .foot -->
         <div class="foot">
             <span>Reach me:&nbsp;</span>
 
+            <!-- .social-menu -->
             <ul class="social-menu">
                 <li class="nav-item facebook">
                     <a class="nav-link" target="_blank" href="https://facebook.com/bin.emmanuel"><i class="fa fa-facebook"></i></a>
@@ -65,7 +136,9 @@ require 'lib/config.php';
                     <a class="nav-link" target="_blank" href="https://www.instagram.com/7binemmanuel/"><i class="fa fa-instagram"></i></a>
                 </li>
             </ul>
-        </div>
+            <!-- .social-menu /-->
+            </div>
+        <!-- .foot /-->
         
         <script src="assets/js/main.js"></script>
     </footer>
