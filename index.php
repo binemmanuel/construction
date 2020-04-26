@@ -14,9 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($_POST['email'])) {
         // Check if the user already subscribed
-        if ($user::user_exist($email)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // Store an error message
-            $message = 'You are already a subscriber. Thank you';
+            $error = 'Invalid email address. Please enter a valid email address.';
+
+        } elseif ($user::user_exist($email)) {
+            // Store an error message
+            $message = 'You are already a subscriber. Thank you.';
+
         } else {
             // Set the user's role.
             $user->set_role('subscriber');
@@ -99,25 +104,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 I am preparing something amazing and exciting for you.
             </p>
             <p>Subscribe to the news letter to stay in touch</p>
-
-            <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
-                <!-- .subscription-form -->
-                <div class="subscription-form">
-                    <input type="email" name="email" placeholder="Subscribe" />
-
-                    <button type="submit">
-                        <i class="fa fa-envelope"></i>
-                    </button>
-                </div>
-                <!-- .subscription-form /-->
-
-                <div>
-                    <small>We'll never share your email with anyone else.</small>
-                </div>
-            </form>
         </div>
         <!-- .banner /-->
 
+        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+            <!-- .subscription-form -->
+            <div class="subscription-form">
+                <input type="email" name="email" placeholder="Subscribe" required   
+                <?php if (!empty($email)): ?>
+                    value="<?= $email ?>"
+                <?php endif ?> />
+
+                <button type="submit">
+                    <i class="fa fa-envelope"></i>
+                </button>
+            </div>
+            <!-- .subscription-form /-->
+
+            <div>
+                <small>We'll never share your email with anyone else.</small>
+            </div>
+        </form>
     </main>
     <footer>
         <!-- .foot -->
