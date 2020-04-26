@@ -9,6 +9,7 @@
  *
  * @version	1.0
  */
+session_name("id");
 // Initialize session.
 session_start();
 
@@ -47,10 +48,13 @@ define('DB_SERVER', 'localhost');
 define('CHARSET', 'utf8mb4');
 
 /** Mail configurations */
-define('SMTP_HOST', 'smtp_host_here');
+define('SMTP_HOST', 'mail.binemmanuel.com');
 define('SMTP_DEBUG', false);
-define('SMTP_SECURE_TLS', 'tls');
-define('SMTP_PORT', 'smtp_port_here');
+define('SMTP_PORT', 26);
+define('REPLY_TO', 'me@binemmanuel.com');
+define('MAIL_USER', 'me@binemmanuel.com');
+define('MAIL_USERS_NAME', 'Bin Emmanuel');
+define('MAIL_PASSWORD', 'SMARTESTlogin89');
 
 /**
  * For developers: Dragon Programming Forum debugging mode.

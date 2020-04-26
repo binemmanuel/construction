@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         } elseif ($user::user_exist($email)) {
             // Store an error message
-            $message = 'You are already a subscriber. Thank you.';
+            $res = 'You are already a subscriber. Thank you.';
 
         } else {
             // Set the user's role.
@@ -28,24 +28,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
             // Set the user's email address.
             $user->set_email($email);
+            
         
             // Subcribe.
-            if ($user->subcribe()) {
+            // if ($user->subcribe()) {
+                /**
+                 * Mail email the subscriber.
+                 */
+                // Subject of the message
+                $subject = 'Please confirm your subscription';
+
                 // Store a message.
-                $message = 'An email as been sent to you.';
-                $message .= '<br/> Please confirm you email address.';
-        
-                unset($email);
+                $message = '<div class="mail-template">';
+                $message .= '<h2><strong>Hello,<strong/></h2>';
+                $message .= '<p>Please click the button below to confirm that ';
+                $message .= $email;
+                $message .= ' is the correct email address to recieve my newsletter.</p>';
+                $message .= '<br/>';
+                $message .= '<a class="btn" href="https://binemmanuel.com/confirm-email?action=subscribe&email='. $email .'">Confirm your email</a>';
+                $message .= '<br/>';
+                $message .= '<br/>';
+                $message .= '<hr>';
+                $message .= '<p>If you didn\'t subscribe, just delete this email <a class="link" href="https://binemmanuel.com/confirm-email?action=unsubscribe&email='. $email .'">here</a>.';
+                $message .= ' You are not subscribed until you click the confirmation button above.';
+                $message .= '</div>';
+                
+                // Include mailer
+                require 'lib/mail.php';
             }
-        }
+        // }
         
     } else {
         // store an error message
         $error = 'Please enter your email address';
     }
-
 }
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,15 +109,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="alert error-alert width-7"><?= $error ?></p>
             <!-- .success-alert /-->
 
-        <?php elseif (!empty($message)): ?>
+        <?php elseif (!empty($res)): ?>
             <!-- .success-alert -->
-            <p class="alert success-alert width-7"><?= $message ?></p>
+            <p class="alert success-alert width-7"><?= $res ?></p>
             <!-- .success-alert /-->
             
         <?php endif ?>
 
         <h1>Coming Soon</h1>
-
         <!-- .banner -->
         <div class="banner">
             <p>
@@ -110,10 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
             <!-- .subscription-form -->
             <div class="subscription-form">
-                <input type="email" name="email" placeholder="Subscribe" required   
-                <?php if (!empty($email)): ?>
-                    value="<?= $email ?>"
-                <?php endif ?> />
+                <input type="email" name="email" placeholder="Subscribe" required />
 
                 <button type="submit">
                     <i class="fa fa-envelope"></i>
