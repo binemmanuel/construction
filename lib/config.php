@@ -39,7 +39,7 @@ define('DB_NAME', 'construction');
 define('DB_USER', 'binemmanuel');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'password_here');
+define('DB_PASSWORD', 'SMARTlogin89');
 
 /** MySQL hostname */
 define('DB_SERVER', 'localhost');
@@ -48,13 +48,13 @@ define('DB_SERVER', 'localhost');
 define('CHARSET', 'utf8mb4');
 
 /** Mail configurations */
-define('SMTP_HOST', 'mail_smtl_here');
+define('SMTP_HOST', 'mail.binemmanuel.com');
 define('SMTP_DEBUG', false);
 define('SMTP_PORT', 26);
-define('REPLY_TO', 'user_here');
-define('MAIL_USER', 'usee_here');
-define('MAIL_USERS_NAME', 'user\'s_name_here');
-define('MAIL_PASSWORD', 'user\'s_password');
+define('REPLY_TO', 'me@binemmanuel.com');
+define('MAIL_USER', 'me@binemmanuel.com');
+define('MAIL_USERS_NAME', 'Bin Emmanuel');
+define('MAIL_PASSWORD', 'SMARTESTlogin89');
 
 /**
  * For developers: Dragon Programming Forum debugging mode.
