@@ -57,13 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $message .= $email;
                 $message .= ' is the correct email address to recieve my newsletter.</p>';
                 $message .= '<br/>';
-                // $message .= "<a class='btn' href='https://binemmanuel.com/confirm-email?action=subscribe&id=$user_id&token=$generated_token'>Confirm your email</a>";
-                $message .= "<a class='btn' href='localhost/construction/confirm-email?action=subscribe&id=$user_id&token=$generated_token'>Confirm your email</a>";
+                $message .= "<a class='btn' href='https://binemmanuel.com/confirm-email?action=subscribe&id=$user_id&token=$generated_token'>Confirm your email</a>";
                 $message .= '<br/>';
                 $message .= '<br/>';
                 $message .= '<hr>';
-                // $message .= "<p>If you didn't subscribe, just delete this email <a class='link' href='https://binemmanuel.com/confirm-email?action=unsubscribe&id=$user_id'>here</a>.";
-                $message .= "<p>If you didn't subscribe, just delete this email <a class='link' href='localhost/construction/confirm-email?action=unsubscribe&id=$user_id'>here</a>.";
+                $message .= "<p>If you didn't subscribe, just delete this email <a class='link' href='https://binemmanuel.com/confirm-email?action=unsubscribe&id=$user_id'>here</a>.";
                 $message .= ' You are not subscribed until you click the confirmation button above.';
                 $message .= '</div>';
                 
