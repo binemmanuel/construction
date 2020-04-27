@@ -89,6 +89,11 @@ class User
         }
     }
 
+    public function get_id(): int
+    {
+        return (int) $this->id;
+    }
+
     /**
      * Sets the user's email address.
      * 
@@ -292,15 +297,19 @@ class User
         // Prepare an sql statement.
         $stmt = $conn->prepare(
             'SELECT
-        id,
-        email,
-        full_name,
-        role,
-        status,
-        profile_pic,
-        date FROM users
-        WHERE NOT role = "admin" AND NOT role = "super admin"
-        ORDER BY full_name ASC'
+                id,
+                email,
+                full_name,
+                role,
+                status,
+                profile_pic,
+                date
+            FROM users
+            WHERE NOT 
+                role = "admin" 
+            AND NOT 
+                role = "super admin"
+            ORDER BY full_name ASC'
         );
 
         // Execute query.
@@ -467,7 +476,7 @@ class User
     /**
      * Deletes a user account.
      */
-    public static function delete(int $id): bool
+    public function delete(int $id): bool
     {
         // Include our connection file.
         include LIB_DIR .'conn.php';
@@ -822,7 +831,7 @@ class User
      * 
      * @return bool false or true if account status was changed successfully.
      */
-    public static function change_status(int $status, $user_id): bool
+    public function change_status(int $status, $user_id): bool
     {
         // Include our connection file.
 

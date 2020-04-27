@@ -40,7 +40,7 @@ form{
     box-shadow: 2px 2px 8px;
     visibility: visible;
     opacity: 1;
-    transition: visibility 4s, opacity 4s linear;
+    transition: visibility 12s, opacity 12s linear;
     text-shadow: none;
 }
 .success-alert{

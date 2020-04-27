@@ -17,8 +17,8 @@ try {
     $mail->SMTPDebug = SMTP_DEBUG;                    // Enable verbose debug output
     $mail->isSMTP();                                            // Send using SMTP
     $mail->Host       = SMTP_HOST;                    // Set the SMTP server to send through
-    $mail->SMTPAuth   = false;                                   // Enable SMTP authentication
-    $mail->SMTPAutoTLS = false; 
+    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+    $mail->SMTPAutoTLS = true; 
     $mail->Username   = MAIL_USER;                     // SMTP username
     $mail->Password   = MAIL_PASSWORD;                               // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
@@ -35,7 +35,8 @@ try {
             'verify_peer_name' => false,
             'allow_self_signed' => true
         )
-    );    // $mail->addCC('cc@example.com');
+    );
+    // $mail->addCC('cc@example.com');
     // $mail->addBCC('bcc@example.com');
 
     // Attachments
@@ -52,6 +53,9 @@ try {
         // Store a message.
         $res = 'An email as been sent to you.';
         $res .= ' Please confirm you email address.';
+    } else {
+        echo $error = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
     }
 } catch (Exception $e) {
     // Store an error message

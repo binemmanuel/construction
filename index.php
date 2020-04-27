@@ -1,68 +1,6 @@
 <?php
 require 'lib/config.php';
-require 'lib/classes/User.php';
-
-// Instantiate a User Object.
-$user = new User;
-
-/**
- * Process for data.
- */
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Store the email address.
-    $email = clean_data($_POST['email']);
-
-    if (!empty($_POST['email'])) {
-        // Check if the user already subscribed
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            // Store an error message
-            $error = 'Invalid email address. Please enter a valid email address.';
-
-        } elseif ($user::user_exist($email)) {
-            // Store an error message
-            $res = 'You are already a subscriber. Thank you.';
-
-        } else {
-            // Set the user's role.
-            $user->set_role('subscriber');
-        
-            // Set the user's email address.
-            $user->set_email($email);
-            
-        
-            // Subcribe.
-            // if ($user->subcribe()) {
-                /**
-                 * Mail email the subscriber.
-                 */
-                // Subject of the message
-                $subject = 'Please confirm your subscription';
-
-                // Store a message.
-                $message = '<div class="mail-template">';
-                $message .= '<h2><strong>Hello,<strong/></h2>';
-                $message .= '<p>Please click the button below to confirm that ';
-                $message .= $email;
-                $message .= ' is the correct email address to recieve my newsletter.</p>';
-                $message .= '<br/>';
-                $message .= '<a class="btn" href="https://binemmanuel.com/confirm-email?action=subscribe&email='. $email .'">Confirm your email</a>';
-                $message .= '<br/>';
-                $message .= '<br/>';
-                $message .= '<hr>';
-                $message .= '<p>If you didn\'t subscribe, just delete this email <a class="link" href="https://binemmanuel.com/confirm-email?action=unsubscribe&email='. $email .'">here</a>.';
-                $message .= ' You are not subscribed until you click the confirmation button above.';
-                $message .= '</div>';
-                
-                // Include mailer
-                require 'lib/mail.php';
-            }
-        // }
-        
-    } else {
-        // store an error message
-        $error = 'Please enter your email address';
-    }
-}
+require 'subscribe.php';
 
 ?>
 
@@ -82,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
+
 
     <!-- Icons -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
@@ -105,15 +44,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </header>
     <main>
         <?php if (!empty($error)): ?>
-            <!-- .success-alert -->
+            <!-- .error-alert -->
             <p class="alert error-alert width-7"><?= $error ?></p>
-            <!-- .success-alert /-->
+            <!-- .error-alert /-->
 
         <?php elseif (!empty($res)): ?>
             <!-- .success-alert -->
             <p class="alert success-alert width-7"><?= $res ?></p>
             <!-- .success-alert /-->
-            
+
+        <?php elseif(!empty($_SESSION['res_err'])): ?>
+            <!-- .error-alert -->
+            <p class="alert error-alert width-7"><?= clean_data($_SESSION['res_err']) ?></p>
+            <!-- .error-alert /-->
+
+            <?php session_destroy() ?>
+
+        <?php elseif(!empty($_SESSION['res'])): ?>
+            <!-- .success-alert -->
+            <p class="alert success-alert width-7"><?= clean_data($_SESSION['res']) ?></p>
+            <!-- .success-alert /-->
+
+            <?php session_destroy() ?>
+
         <?php endif ?>
 
         <h1>Coming Soon</h1>
@@ -127,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <!-- .banner /-->
 
-        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+        <form action="<?= rm_ext($_SERVER['PHP_SELF']) ?>" method="POST" autocomplete="off">
             <!-- .subscription-form -->
             <div class="subscription-form">
                 <input type="email" name="email" placeholder="Subscribe" required />
