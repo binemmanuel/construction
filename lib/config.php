@@ -33,10 +33,10 @@ define('UPLOAD_DIR', 'bt-contents'. DIRECTORY_SEPARATOR);
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database */
-define('DB_NAME', 'construction');
+define('DB_NAME', 'db_name_here');
 
 /** MySQL database username */
-define('DB_USER', 'binemmanuel');
+define('DB_USER', 'db_username_here');
 
 /** MySQL database password */
 define('DB_PASSWORD', 'password_here');
