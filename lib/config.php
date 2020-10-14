@@ -1,4 +1,5 @@
 <?php
+
 /**
  * System configurations.
  * 
@@ -19,17 +20,17 @@ require 'functions.php';
 /**
  * Class Directory.
  */
-define('LIB_DIR', 'lib'. DIRECTORY_SEPARATOR);
+define('LIB_DIR', 'lib' . DIRECTORY_SEPARATOR);
 
 /**
  * Classes file path.
  */
-define('CLASS_DIR', LIB_DIR .'classes'. DIRECTORY_SEPARATOR);
+define('CLASS_DIR', LIB_DIR . 'classes' . DIRECTORY_SEPARATOR);
 
 /**
  * Upload Directory.
  */
-define('UPLOAD_DIR', 'bt-contents'. DIRECTORY_SEPARATOR);
+define('UPLOAD_DIR', 'bt-contents' . DIRECTORY_SEPARATOR);
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database */
@@ -72,10 +73,10 @@ ini_set('display_errors', !IS_ENV_PRODUCTION);
 date_default_timezone_set('Africa/Lagos'); //http://www.php.net/manual/en/timezones.php
 
 // Check if "log" folder exists.
-if (!file_exists('../log')) {
+/* if (!file_exists('../log')) {
     // Create the "log" folder.
     mkdir('../log');
 } else {
     // Set error log.
     ini_set('error_log', 'log/php-error.txt');
-}
+} */
